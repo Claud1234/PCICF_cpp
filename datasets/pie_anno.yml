@@ -1,0 +1,311 @@
+- id: "pie_023"
+  event_window: [1, 616]
+  type: both # multi-messy
+- id: "pie_041"
+  event_window: [225, 767]
+  type: both # multi messy
+- id: "pie_234"
+  event_window: [639, 780]
+  type: both # multi-messy
+- id: "pie_235"
+  event_window: [1, 298]
+  type: both # multi-messy
+- id: "pie_276"
+  event_window: [94, 892]
+  type: both # multi-messy
+- id: "pie_346"
+  event_window: [252, 700]
+  type: both #multi messy
+- id: "pie_355"
+  event_window: [323, 469]
+  type: both # multi messy
+- id: "pie_358"
+  event_window: [705, 892]
+  type: both # multi messy
+- id: "pie_359"
+  event_window: [1, 119] #multi
+  type: both # multi messy
+- id: "pie_377"
+  event_window: [91, 671] #multi
+  type: both # multi messy
+- id: "pie_379"
+  event_window: [111, 441]
+  type: left  #multi and far
+- id: "pie_383"
+  event_window: [724, 899]
+  type: both # multi messy
+- id: "pie_384"
+  event_window: [1, 160] #multi
+  type: both #multi messy
+- id: "pie_385"
+  event_window: [12, 859]
+  type: both # multi, messy.
+- id: "pie_404"
+  event_window: [174, 449]
+  type: both #mutli-messy
+- id: "pie_439"
+  event_window: [82, 365]
+  type: both # multi messy
+
+
+
+
+
+
+
+
+#- id: "pie_541"
+ # event_window: [285, 405] #far
+ # type: right
+#- id: "pie_536"
+ #event_window: [438, 588] #far
+ # type: right
+#- id: "pie_483"
+   #event_window: [361, 525] #far
+   #type: left
+#- id: "pie_483"
+   #event_window: [1, 157] #occluded
+   #type: left
+#- id: "pie_482"
+   #event_window: [692, 898] #far
+   #type: left
+#- id: "pie_476"
+   #event_window: [18, 258] #farcycle
+   #type: right
+#- id: "pie_474"
+#  event_window: [1, 269]
+#  type: right
+#- id: "pie_475"
+  #event_window: [159, 344] #far
+  #type: right
+#- id: "pie_445"
+#  event_window: [355, 559] #far
+#  type: right
+#- id: "pie_437"
+#  event_window: [278, 381] #occluded
+#  type: left
+#- id: "pie_437"
+#  event_window: [684, 863] #far
+#  type: left
+#- id: "pie_428"
+#  event_window: [461, 699] #far
+#  type: left
+#- id: "pie_387"
+#  event_window: [374, 600]#far
+# type: left
+#- id: "pie_565"
+ #event_window: [625, 867] #far
+ # type: right
+#- id: "pie_281"
+#  event_window: [758, 891]
+#  type: right
+#- id: "pie_161"
+#  event_window: [1, 178]
+#  type: right
+#- id: "pie_180"
+#  event_window: [479, 794] #can be multi single
+#  type: multi
+#- id: "pie_281"
+#  event_window: [758, 891]
+#  type: right
+#- id: "pie_293"
+#  event_window: [614, 715] #far3cells
+#  type: right
+#- id: "pie_293"
+#  event_window: [743, 879] #far3cells
+#  type: left
+#- id: "pie_294"
+#  event_window: [1, 160] #far3cells
+#  type: right
+#- id: "pie_355"
+#  event_window: [660, 837]#far
+#  type: left
+#- id: "pie_311"
+#  event_window: [139, 210] #irrelvent
+#  type: right
+#- id: "pie_311"
+#  event_window: [616, 794] #far
+#  type: right
+#- id: "pie_565"
+#  event_window: [625, 867] #far
+# type: right
+#- id: "pie_547"
+# event_window: [182, 327] #far
+# type: right
+#- id: "pie_541"
+ # event_window: [285, 405] #far
+ # type: right
+#- id: "pie_536"
+ #event_window: [438, 588] #far
+ # type: right
+#- id: "pie_483"
+   #event_window: [361, 525] #far
+   #type: left
+#- id: "pie_483"
+   #event_window: [1, 157] #occluded
+   #type: left
+#- id: "pie_482"
+   #event_window: [692, 898] #far
+   #type: left
+#- id: "pie_476"
+   #event_window: [18, 258] #farcycle
+   #type: right
+#- id: "pie_475"
+  #event_window: [159, 344] #far
+  #type: right
+#- id: "pie_445"
+#  event_window: [355, 559] #far
+#  type: right
+#- id: "pie_437"
+#  event_window: [278, 381] #occluded
+#  type: left
+#- id: "pie_437"
+#  event_window: [684, 863] #far
+#  type: left
+#- id: "pie_428"
+#  event_window: [461, 699] #far
+#  type: left
+#- id: "pie_387"
+#  event_window: [374, 600]#far
+# type: left
+#- id: "pie_376"
+#  event_window: [98, 321]#far
+#  type: right
+#- id: "pie_374"
+#  event_window: [481, 656]#farand occ
+#  type: right
+#- id: "pie_374"
+#  event_window: [752, 862]#far
+#  type: right
+#- id: "pie_373"
+#  event_window: [147, 347]#multi
+#  type: right
+#- id: "pie_369"
+#  event_window: [705, 900]#multi
+#  type: right
+#- id: "pie_363"
+#  event_window: [108, 350]#far
+#  type: right
+#- id: "pie_361"
+#  event_window: [25, 180]#far
+#  type: left
+#- id: "pie_355"
+#  event_window: [660, 837]#far
+#  type: left
+#- id: "pie_348"
+#  event_window: [287, 465]#far
+#  type: right
+#- id: "pie_348"
+#  event_window: [681 , 842]#far
+#  type: left
+#- id: "pie_096"
+#  event_window: [714, 860] #far
+#  type: right
+#- id: "pie_101"
+#  event_window: [105, 545] #far
+#  type: multi
+#- id: "pie_104"
+#  event_window: [505, 738] #far
+#  type: multi
+#- id: "pie_106"
+#  event_window: [817, ]#cropped
+#  type: left
+#- id: "pie_109"
+#  event_window: [463, 655]#far
+#  type: left
+#- id: "pie_111"
+#  event_window: [174, 485]#far
+#  type: right
+#- id: "pie_111"
+#  event_window: [186, 566]#far
+#  type: left
+#- id: "pie_112"
+#  event_window: [12, 183]#far
+#  type: right
+#- id: "pie_112"
+#  event_window: [272, 483]#far
+#  type: right
+#- id: "pie_113"
+#  event_window: [676]#far
+#  type: right
+#- id: "pie_293"
+#  event_window: [614, 715] #far3cells
+#  type: right
+#- id: "pie_293"
+#  event_window: [743, 879] #far3cells
+#  type: left
+#- id: "pie_294"
+#  event_window: [1, 160] #far3cells
+#  type: right
+#- id: "pie_311"
+#  event_window: [139, 210] #irrelvent
+#  type: right
+#- id: "pie_311"
+#  event_window: [616, 794] #far
+#  type: right
+#- id: "pie_547"
+ #event_window: [182, 327] #far
+ # type: right
+#- id: "pie_376"
+#  event_window: [98, 321]#far
+#  type: right
+#- id: "pie_374"
+#  event_window: [481, 656]#farand occ
+#  type: right
+#- id: "pie_374"
+#  event_window: [752, 862]#far
+#  type: right
+#- id: "pie_373"
+#  event_window: [147, 347]#multi
+#  type: right
+#- id: "pie_369"
+#  event_window: [705, 900]#multi
+#  type: right
+#- id: "pie_363"
+#  event_window: [108, 350]#far
+#  type: right
+#- id: "pie_361"
+#  event_window: [25, 180]#far
+#  type: left
+#- id: "pie_348"
+#  event_window: [287, 465]#far
+#  type: right
+#- id: "pie_348"
+#  event_window: [681 , 842]#far
+#  type: left
+#- id: "pie_096"
+#  event_window: [714, 860] #far
+#  type: right
+#- id: "pie_101"
+#  event_window: [105, 545] #far
+#  type: multi
+#- id: "pie_104"
+#  event_window: [505, 738] #far
+#  type: multi
+#- id: "pie_106"
+#  event_window: [817, ]#cropped
+#  type: left
+#- id: "pie_109"
+#  event_window: [463, 655]#far
+#  type: left
+#- id: "pie_111"
+#  event_window: [174, 485]#far
+#  type: right
+#- id: "pie_111"
+#  event_window: [186, 566]#far
+#  type: left
+#- id: "pie_112"
+#  event_window: [12, 183]#far
+#  type: right
+#- id: "pie_112"
+#  event_window: [272, 483]#far
+#  type: right
+#- id: "pie_113"
+#  event_window: [676]#far
+#  type: right
+#- id: "pie_161"
+#  event_window: [1, 178]
+#  type: right
+#- id: "pie_180"
+#  event_window: [479, 794] #can be multi single
+#  type: multi

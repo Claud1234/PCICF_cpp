@@ -1,0 +1,5 @@
+*.png
+.DS_Store
+*.pt
+*.onnx
+*.tar.gz

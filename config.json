@@ -1,0 +1,20 @@
+{
+  "General":{
+        "yolo_track_threshold": 180,
+        "sfc_bounding":0.0,
+        "image_width": 640,
+        "image_height": 480,
+        "roi_width": 60,
+        "roi_height": 120
+  },
+  "Dataset": {
+    "pie": {
+      "yaml_path": "multi_follow_l2r.yml",
+      "grid_left_top_coord":[[120, 280], [180, 280], [240, 280], [340, 280], [400, 280], [460, 280]]
+    },
+    "MoreSMIRK": {
+      "input_path": "./datasets/MoreSMIRK/more_smirk/event_22/evt_22",
+      "grid_left_top_coord":[[120, 200], [180, 200], [240, 200], [340, 200], [400, 200], [460, 200]]
+    }
+  }
+}
