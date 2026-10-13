@@ -1,15 +1,12 @@
 # PCICF detection pipeline, C++17 port
 
+## A native C++ implementation of PCICF project. The 'detection_pipeline' is working 
+### TODO: 1)make the pipeline running on GPU (currently build and run on cpu) 2)add the port for 'evaluation_pipeline.' 3) add a docker wrapper. 
+
 This ports `detection_pipeline.py` and its runtime dependencies in
 [Claud1234/PCICF, branch devel](https://github.com/Claud1234/PCICF/tree/devel).
 Source snapshot: `46dd378ca0b6137f1874e7ace9b35e9e4f3f198e`.
 
-The executable performs YOLO11 detection, native BoT-SORT tracking, complete
-crossing selection, six-cell ROI occupancy, Morton encoding, semicolon-separated
-CSV export, PNG plotting, and optional bounding-box visualization.
-
-There is no Python dependency at runtime. Exporting the original pretrained model
-to ONNX is a separate, one-time operation.
 
 ## Replacements
 
@@ -27,8 +24,7 @@ to ONNX is a separate, one-time operation.
 | PyTorch YOLO inference | ONNX model executed with OpenCV DNN |
 | Ultralytics BoT-SORT | Native C++ implementation with Eigen Kalman algebra |
 
-This ports the detection pipeline. The separate `evaluation_pipeline.py`,
-dataset-generation scripts, and notebooks are outside this package's scope.
+T
 
 ## Build
 
@@ -160,19 +156,6 @@ The native build uses system C++ libraries and does not need the Conda runtime
 preload. See the [official Linux installation guide](https://docs.opencv.org/4.10.0/d7/d9f/tutorial_linux_install.html)
 and [build options](https://docs.opencv.org/4.10.0/db/d05/tutorial_config_reference.html).
 
-### Reconfiguring an existing build
-
-If a previous configuration selected other dependencies or OpenCV libraries,
-use `cmake --fresh` (CMake 3.24+) with the same `OpenCV_DIR` and any
-`CMAKE_IGNORE_PREFIX_PATH` arguments from your chosen approach, then rebuild.
-With older CMake versions, use a new build directory. Remove explicit Conda
-entries from `LD_LIBRARY_PATH` or `LIBRARY_PATH` before compiling.
-
-Windows: install OpenCV 4.10.0 and the other dependencies using a
-CMake-compatible package manager, configure with its toolchain and OpenCV
-package path, and build with `cmake --build build --config Release`.
-For a multi-configuration generator, the executable will usually be
-`build/Release/detection_pipeline.exe`.
 
 ## Export the model once
 
@@ -219,90 +202,7 @@ LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 \
 ```
 
 The original `-d`, `-o`, and `-s` flags retain their meanings. `--help` describes
-additional options. Inference currently targets the CPU; the package does not
-include model weights or image datasets.
+additional options. `--device cpu` is the default; `--device cuda` selects
+NVIDIA GPU inference. The package does not include model weights or image datasets.
 
-## Preserved behavior
-
-- PIE end frames are exclusive, just like `range(start_frame, end_frame)`.
-- MoreSMIRK frames are sorted lexicographically, not numerically.
-- Track histories are filtered after the whole sequence: horizontal motion must
-  exceed `yolo_track_threshold` and cross the configured image center.
-- The timestamp starts at zero and increases by 33 ms per input frame.
-- Only class zero (person) contributes to histories; tracking sees all classes.
-- Floating box coordinates and history IDs use the original uint16 truncation
-  and wrap semantics. No new clipping is applied to tracked boxes.
-- ROI intersections use half-open image ranges. A pixel covered by several boxes
-  is counted once. Pixels beyond the image are excluded from the numerator;
-  the denominator remains the configured ROI area.
-- Occupancy is strictly `coverage > sfc_bounding`.
-- Binary occupancy is multiplied by **10** before Morton interleaving. Directly
-  interleaving zero/one values would produce different codes.
-- CSV columns, delimiter, and filenames match the original. A sequence with no
-  accepted crossing produces header-only CSV files and an empty plot.
-- Visualizations use the original `outputs/<dataset>_visual` location. An input
-  outside a `datasets` directory is placed there by filename, avoiding the
-  original string-replacement behavior that can overwrite an input image.
-- The accidental global `configs` reference is replaced with the passed config.
-
-PNG plots preserve red Morton event markers and green frame scatter points with
-separate y axes; font, dimensions, and tick placement differ from matplotlib.
-The label `Frequency` is retained, although the original event plot is not a
-frequency histogram.
-
-## Tracking and reproducibility
-
-The repository pins Ultralytics 8.3.203. This port targets that version's
-`botsort.yaml`: high/low/new confidence thresholds 0.25/0.1/0.25, 30-frame lost
-buffer, fused-score first association at 0.8, second association at 0.5,
-unconfirmed association at 0.7, XYWH Kalman filtering, sparse optical-flow motion
-compensation, and ReID disabled. The detector uses confidence 0.1, class-aware
-NMS IoU 0.7, and at most 300 detections.
-
-The matching solver is a native Hungarian implementation with the same
-limited-cost objective as `lapjv`. Equally optimal assignments can break ties
-differently. Eigen/OpenCV calculations and ONNX inference can also produce
-small numeric differences relative to SciPy/PyTorch; these can affect boxes,
-track identities, or threshold decisions. This is not a claim of bit-for-bit
-identity on untested real sequences.
-
-Do not change to a newer Ultralytics default tracker when exporting reference
-data: that would change the comparison target. ReID and alternative GMC methods
-other than `none` are outside this port's supported configuration.
-
-## Replay and compare
-
-`--dump-tracks` writes `<sequence>_tracks.json` alongside the CSVs. It contains
-normalized input paths and rows `[x1,y1,x2,y2,track_id,score,class]`:
-
-```json
-{
-  "frames": {
-    "datasets/pie/pie_003/598.png": [[110, 280, 160, 400, 1, 0.91, 0]],
-    "datasets/pie/pie_003/599.png": []
-  }
-}
-```
-
-Supply `--tracks FILE` to reproduce SFC/CSV output from already tracked boxes
-without loading an ONNX model. Each processed input path must exist as a key,
-including frames with empty results. Frame images must still be available.
-
-`--detections FILE` uses the same format with detection rows
-`[x1,y1,x2,y2,score,class]`, feeding the native tracker instead of the detector.
-This separates tracker comparisons from inference differences.
-Use `--gmc none` only when the reference comparison also disables motion
-compensation.
-
-## Validation
-
-See `VALIDATION.md` for the checks run for this package and their limits.
-
-## Sources
-
-- [PCICF source](https://github.com/Claud1234/PCICF/tree/devel)
-- [Pinned Ultralytics tracker source](https://github.com/ultralytics/ultralytics/tree/v8.3.203/ultralytics/trackers)
-- [OpenCV YOLO deployment documentation](https://docs.opencv.org/4.x/da/d9d/tutorial_dnn_yolo.html)
-- [yaml-cpp](https://github.com/jbeder/yaml-cpp)
-- [nlohmann/json](https://json.nlohmann.me/integration/cmake/)
 
