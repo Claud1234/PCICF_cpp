@@ -3,3 +3,4 @@
 *.pt
 *.onnx
 *.tar.gz
+build/

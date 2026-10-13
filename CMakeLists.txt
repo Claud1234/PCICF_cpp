@@ -7,15 +7,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(nlohmann_json 3.10 CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
 find_package(Eigen3 3.3 CONFIG REQUIRED)
-find_package(OpenCV QUIET COMPONENTS core imgproc imgcodecs dnn video calib3d)
-if(NOT OpenCV_FOUND)
-    # Also support Linux installations containing individual OpenCV dev packages.
-    find_path(OpenCV_INCLUDE_DIRS opencv2/core.hpp PATH_SUFFIXES opencv4 REQUIRED)
-    foreach(component core imgproc imgcodecs dnn video calib3d)
-        find_library(OPENCV_${component} NAMES opencv_${component} REQUIRED)
-        list(APPEND OpenCV_LIBS ${OPENCV_${component}})
-    endforeach()
-endif()
+# Require the version verified with the supplied YOLO11x ONNX model.
+# Select an alternative installation explicitly with OpenCV_DIR (see README).
+find_package(OpenCV 4.10.0 EXACT REQUIRED CONFIG
+             COMPONENTS core imgproc imgcodecs dnn video calib3d)
+message(STATUS "PCICF OpenCV ${OpenCV_VERSION}: ${OpenCV_DIR}")
 if(TARGET yaml-cpp::yaml-cpp)
     set(YAML_TARGET yaml-cpp::yaml-cpp)
 else()
